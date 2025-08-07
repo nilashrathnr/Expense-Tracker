@@ -60,20 +60,18 @@ npm run dev
 # or
 yarn dev
 ```
+## 5. Downgrade date-fns
+Edit your package.json:
+
+"dependencies": {
+  "date-fns": "^3.6.0", // or ^2.29.3
+  "react-day-picker": "^8.10.1",
+  ...
+}
+Then:
+```
+rm -rf node_modules package-lock.json
+npm install
+```
 
 
-### FOLDER STRUCTURE
-
-.
-├── app/
-│   ├── dashboard/
-│   │   └── page.tsx
-├── components/
-│   └── dashboard/
-│       ├── ExpenseForm.tsx
-│       └── ExpenseList.tsx
-├── lib/
-│   ├── supabase.ts
-│   ├── expenses.ts
-│   └── utils.ts
-└── styles/
