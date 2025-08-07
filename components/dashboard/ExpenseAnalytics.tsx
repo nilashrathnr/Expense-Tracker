@@ -19,6 +19,13 @@ import type { Expense } from '@/lib/supabase'
 import { TrendingUp, Calendar, PieChart as PieChartIcon } from 'lucide-react'
 import { formatCurrency } from '@/lib/utils'
 
+const TypedResponsiveContainer = ResponsiveContainer as unknown as React.ComponentType<{
+  width: string | number;
+  height: number;
+  children: React.ReactNode;
+}>;
+
+
 interface ExpenseAnalyticsProps {
   expenses: Expense[]
 }
@@ -166,7 +173,7 @@ export default function ExpenseAnalytics({ expenses }: ExpenseAnalyticsProps) {
               <CardTitle>Expenses by Category</CardTitle>
             </CardHeader>
             <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
+              <TypedResponsiveContainer width="100%" height={300}>
                 <PieChart>
                   <Pie
                     data={analytics.categoryData}
@@ -189,7 +196,7 @@ export default function ExpenseAnalytics({ expenses }: ExpenseAnalyticsProps) {
                     ]}
                   />
                 </PieChart>
-              </ResponsiveContainer>
+              </TypedResponsiveContainer>
             </CardContent>
           </Card>
 
