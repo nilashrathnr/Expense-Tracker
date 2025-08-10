@@ -134,8 +134,8 @@ export default function ExpenseList({ expenses, onExpenseDeleted }: ExpenseListP
                     <AlertDialogHeader>
                       <AlertDialogTitle>Delete Expense</AlertDialogTitle>
                       <AlertDialogDescription>
-                        Are you sure you want to delete "{expense.title}"? This action cannot be
-                        undone.
+                        {`Are you sure you want to delete "{expense.title}"? This action cannot be
+                        undone.`}
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>

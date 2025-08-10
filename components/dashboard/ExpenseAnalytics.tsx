@@ -19,13 +19,6 @@ import type { Expense } from '@/lib/supabase'
 import { TrendingUp, Calendar, PieChart as PieChartIcon } from 'lucide-react'
 import { formatCurrency } from '@/lib/utils'
 
-const TypedResponsiveContainer = ResponsiveContainer as unknown as React.ComponentType<{
-  width: string | number;
-  height: number;
-  children: React.ReactNode;
-}>;
-
-
 interface ExpenseAnalyticsProps {
   expenses: Expense[]
 }
@@ -173,7 +166,7 @@ export default function ExpenseAnalytics({ expenses }: ExpenseAnalyticsProps) {
               <CardTitle>Expenses by Category</CardTitle>
             </CardHeader>
             <CardContent>
-              <TypedResponsiveContainer width="100%" height={300}>
+              <ResponsiveContainer width="100%" height={300}>
                 <PieChart>
                   <Pie
                     data={analytics.categoryData}
@@ -190,13 +183,13 @@ export default function ExpenseAnalytics({ expenses }: ExpenseAnalyticsProps) {
                     ))}
                   </Pie>
                   <Tooltip
-                    formatter={(value: string | number | undefined) => [
-                      typeof value === 'number' ? formatCurrency(value) : value,
-                      'Amount'
-                    ]}
-                  />
+  formatter={(value: any, _name?: any) => {
+    const val = Array.isArray(value) ? value[0] : value;
+    return [typeof val === 'number' ? formatCurrency(val) : val, 'Amount'] as [any, string];
+  }}
+/>
                 </PieChart>
-              </TypedResponsiveContainer>
+              </ResponsiveContainer>
             </CardContent>
           </Card>
 
@@ -212,11 +205,11 @@ export default function ExpenseAnalytics({ expenses }: ExpenseAnalyticsProps) {
                   <XAxis dataKey="month" />
                   <YAxis />
                   <Tooltip
-                    formatter={(value: string | number | undefined) => [
-                      typeof value === 'number' ? formatCurrency(value) : value,
-                      'Amount'
-                    ]}
-                  />
+  formatter={(value: any, _name?: any) => {
+    const val = Array.isArray(value) ? value[0] : value;
+    return [typeof val === 'number' ? formatCurrency(val) : val, 'Amount'] as [any, string];
+  }}
+/>
                   <Legend />
                   <Bar dataKey="amount" fill="#8884d8" />
                 </BarChart>
